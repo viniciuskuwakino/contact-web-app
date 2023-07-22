@@ -9,6 +9,7 @@ use App\Models\Contact;
 use App\Services\ContactService;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 class ContactController extends Controller
 {
@@ -28,9 +29,10 @@ class ContactController extends Controller
         return view('contacts.create');
     }
 
-    public function store(ContactStoreRequest $req): void
+    public function store(ContactStoreRequest $req): RedirectResponse
     {
         $this->contactService->create($req->validated());
+        return redirect()->route('list');
     }
 
     public function edit($contactId): View
@@ -40,9 +42,11 @@ class ContactController extends Controller
         return view('contacts.edit', compact('contact'));
     }
 
-    public function update(ContactUpdateRequest $req): void
+    public function update(ContactUpdateRequest $req): RedirectResponse
     {
         $this->contactService->update($req['id'], $req->validated());
+        return redirect()->route('list');
+
     }
 
     public function details($contactId): View
@@ -52,9 +56,11 @@ class ContactController extends Controller
         return view('contacts.details', compact('contact'));
     }
 
-    public function delete($contactId): void
+    public function delete($contactId): RedirectResponse
     {
         $contact = $this->contactService->findById($contactId);
         $contact->delete();
+        return redirect()->route('list');
+
     }
 }

@@ -4,37 +4,40 @@
 
 @section('content')
 
-    <form action="/edit" method="POST">
-        @csrf
-        @method('PUT')
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+            <form class="space-y-6" action="/edit" method="POST">
+                @csrf
+                @method('PUT')
 
-{{--        <div style="width: 368px; height: 108px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">--}}
-{{--            <div style="align-self: stretch; color: #666666; font-size: 12px; font-family: Noto Sans; font-weight: 600; line-height: 18px; word-wrap: break-word">Name</div>--}}
-{{--            <div style="align-self: stretch; height: 56px; padding: 16px; background: white; border-radius: 8px; border: 0.50px #CCCCCC solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: flex">--}}
-{{--                <div style="align-self: stretch; justify-content: space-between; align-items: flex-start; gap: 8px; display: inline-flex">--}}
-{{--                    <div style="width: 304px; color: #666666; font-size: 16px; font-family: Noto Sans; font-weight: 400; line-height: 24px; word-wrap: break-word">--}}
-{{--                        <input type="text" id="name" name="name" placeholder="Contact name">--}}
-{{--                    </div>--}}
-{{--                    <div style="width: 24px; height: 24px; position: relative; opacity: 0">--}}
-{{--                        <div style="width: 24px; height: 24px; left: 0px; top: 0px; position: absolute"></div>--}}
-{{--                        <div style="width: 20px; height: 20px; left: 2px; top: 2px; position: absolute; background: black"></div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+                <input type="hidden" id="id" name="id" value="{{ $contact['id'] }}">
 
-        <input type="hidden" id="id" name="id" value="{{ $contact['id'] }}">
+                <div>
+                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                    <div class="mt-2">
+                        <input id="name" name="name" type="text" value="{{ $contact['name'] }}" required class="px-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
 
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" placeholder="Contact name" value="{{ $contact['name'] }}">
+                <div>
+                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email</label>
+                    <div class="mt-2">
+                        <input id="email" name="email" type="email" value="{{ $contact['email'] }}" required class="px-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" placeholder="Contact email" value="{{ $contact['email'] }}">
+                <div>
+                    <label for="contact" class="block text-sm font-medium leading-6 text-gray-900">Contact</label>
+                    <div class="mt-2">
+                        <input id="contact" name="contact" type="text" value="{{ $contact['contact'] }}" required class="px-1 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
 
-        <label for="contact">Contact:</label>
-        <input type="text" id="contact" name="contact" placeholder="Contact phone" value="{{ $contact['contact'] }}">
+                <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-500 border-2 border-indigo-500/100">Edit</button>
+            </form>
 
-        <input type="submit" value="Edit">
-    </form>
+        </div>
+    </div>
+
 
 @endsection
